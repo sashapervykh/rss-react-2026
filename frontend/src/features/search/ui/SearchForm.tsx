@@ -1,0 +1,64 @@
+import { Component, ChangeEvent, FormEvent } from 'react';
+
+const STORAGE_KEY = 'search-query';
+
+interface SearchFormProps {
+    onSearch: (query: string) => void;
+}
+
+interface SearchFormState {
+    query: string;
+}
+
+class SearchForm extends Component<SearchFormProps, SearchFormState> {
+    constructor(props: SearchFormProps) {
+        super(props);
+
+        const savedQuery = localStorage.getItem(STORAGE_KEY) ?? '';
+
+        this.state = {
+            query: savedQuery,
+        };
+    }
+
+    componentDidMount(): void {
+        const { query } = this.state;
+        this.props.onSearch(query);
+    }
+
+    handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+        this.setState({ query: e.target.value });
+    };
+
+    handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+        e.preventDefault();
+
+        const trimmed = this.state.query.trim();
+
+        const saved = localStorage.getItem(STORAGE_KEY) ?? '';
+        if (trimmed === saved) return;
+
+        localStorage.setItem(STORAGE_KEY, trimmed);
+        this.setState({ query: trimmed });
+        this.props.onSearch(trimmed);
+    };
+
+    render() {
+        const { query } = this.state;
+
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <input
+                    type="text"
+                    value={query}
+                    onChange={this.handleChange}
+                    placeholder="Search movies..."
+                />
+                <button type="submit">Search</button>
+            </form>
+        );
+    }
+}
+
+export default SearchForm;
+
