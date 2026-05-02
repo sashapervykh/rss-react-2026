@@ -2,24 +2,43 @@ import { Component } from "react";
 import type { MovieType } from "../../entities/movie/model/MovieType";
 import { SearchForm } from "../../features/search/ui/SearchForm";
 import { MoviesList } from "../../entities/movie/ui/MoviesList/MoviesList";
+import { getMoviesList } from "../../features/search/api/getMoviesList";
 
 interface State {
     movies: MovieType[];
     loading: boolean;
+    error: null | Error;
 }
 
 
 export class SearchWrapper extends Component<object, State> {
     constructor(props: object) {
         super(props)
-        this.state = { movies: [], loading: true }
+        this.state = { movies: [], loading: true, error: null }
     }
 
     render() {
+        if (this.state.error) {
+            throw this.state.error
+        }
         return <>
             <h1>Find Your Movie</h1>
-            <SearchForm onSearch={(query: string) => console.log(query)} />
-            <MoviesList movies={this.state.movies} />
+            <SearchForm handleSearch={this.handleSearch} />
+            <MoviesList movies={this.state.movies} loading={this.state.loading} />
         </>
+    }
+
+    handleSearch = async (query: string) => {
+        this.setState(p => ({ ...p, loading: true, error: null }));
+        try {
+            const movies = await getMoviesList(query)
+            this.setState({ loading: false, movies, error: null });
+        } catch (error) {
+            if (error instanceof Error) {
+                this.setState(p => ({ ...p, error: error }));
+                return;
+            }
+            this.setState(p => ({ ...p, error: new Error('Unknown error') }))
+        }
     }
 }

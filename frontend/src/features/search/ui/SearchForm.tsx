@@ -3,7 +3,7 @@ import Button from '../../../shared/ui/Button/Button';
 import { STORAGE_KEY } from '../constants/storageKey';
 
 interface SearchFormProps {
-    onSearch: (query: string) => void;
+    handleSearch: (query: string) => void;
 }
 
 interface SearchFormState {
@@ -21,7 +21,7 @@ export class SearchForm extends Component<SearchFormProps, SearchFormState> {
 
     componentDidMount(): void {
         const { query } = this.state;
-        this.props.onSearch(query);
+        this.props.handleSearch(query);
     }
 
     handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -38,7 +38,7 @@ export class SearchForm extends Component<SearchFormProps, SearchFormState> {
 
         localStorage.setItem(STORAGE_KEY, trimmed);
         this.setState({ query: trimmed });
-        this.props.onSearch(trimmed);
+        this.props.handleSearch(trimmed);
     };
 
     render() {
