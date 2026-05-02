@@ -12,10 +12,13 @@ export class Home extends Component<undefined, State> {
         super(props)
         this.state = { movies: [] }
     }
+
     render() {
         return <>
             <h1>Find Your Movie</h1>
             <SearchForm onSearch={(query: string) => console.log(query)} />
         </>
     }
+
+
 }
