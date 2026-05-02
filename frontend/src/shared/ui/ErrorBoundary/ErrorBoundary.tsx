@@ -1,5 +1,6 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 import { ErrorFallback } from '../ErrorFallback/ErrorFallback';
+import { FALLBACK_ERROR_MESSAGE } from '../../constants/fallbackErrorMessage';
 
 type ErrorBoundaryProps = {
   children: ReactNode;
@@ -16,7 +17,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   };
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return { errorMessage: error.message ?? 'Unknown error happened. Try again later.' }
+    return { errorMessage: error.message ?? FALLBACK_ERROR_MESSAGE }
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
