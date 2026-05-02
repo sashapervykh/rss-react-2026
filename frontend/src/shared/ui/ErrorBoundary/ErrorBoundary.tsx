@@ -1,4 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
+import { ErrorFallback } from '../ErrorFallback/ErrorFallback';
 
 type ErrorBoundaryProps = {
   children: ReactNode;
@@ -6,16 +7,16 @@ type ErrorBoundaryProps = {
 };
 
 type ErrorBoundaryState = {
-  hasError: boolean;
+  errorMessage: string | null;
 };
 
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   state: ErrorBoundaryState = {
-    hasError: false,
+    errorMessage: null,
   };
 
-  static getDerivedStateFromError(): ErrorBoundaryState {
-    return { hasError: true, }
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return { errorMessage: error.message ?? 'Unknown error happened. Try again later.' }
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -23,13 +24,14 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   }
 
   render() {
-    if (this.state.hasError) {
-      return (
-        this.props.fallback ?? <div>Something went wrong.</div>
-      );
+    if (this.state.errorMessage) {
+      return <ErrorFallback message={this.state.errorMessage} reset={this.resetState} />
     }
-
     return this.props.children;
+  }
+
+  resetState = () => {
+    this.setState({ errorMessage: null });
   }
 }
 
