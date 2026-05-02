@@ -7,7 +7,7 @@ export function getTypedMovies(data: unknown) {
 
 function getTypedMovie(movie: unknown) {
     if (!movie || typeof movie !== 'object') { throw new Error('Each movie should be an object!') }
-    if (!("id" in movie) || typeof movie.id !== 'string') { throw new Error('Each movie should have an id!') }
+    if (!("id" in movie) || typeof movie.id !== 'number') { throw new Error('Each movie should have an id!') }
     if (!("title" in movie) || typeof movie.title !== 'string') { throw new Error('Each movie should have a title!') }
     if (!("overview" in movie) || typeof movie.overview !== 'string') { throw new Error('Each movie should have an overview!') }
     return { id: movie.id, title: movie.title, description: movie.overview }
