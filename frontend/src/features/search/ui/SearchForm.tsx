@@ -1,6 +1,6 @@
-import { Component, ChangeEvent, FormEvent } from 'react';
-
-const STORAGE_KEY = 'search-query';
+import { Component, type ChangeEvent, type SubmitEvent } from 'react';
+import Button from '../../../shared/ui/Button/Button';
+import { STORAGE_KEY } from '../constants/storageKey';
 
 interface SearchFormProps {
     onSearch: (query: string) => void;
@@ -10,12 +10,10 @@ interface SearchFormState {
     query: string;
 }
 
-class SearchForm extends Component<SearchFormProps, SearchFormState> {
+export class SearchForm extends Component<SearchFormProps, SearchFormState> {
     constructor(props: SearchFormProps) {
         super(props);
-
         const savedQuery = localStorage.getItem(STORAGE_KEY) ?? '';
-
         this.state = {
             query: savedQuery,
         };
@@ -30,7 +28,7 @@ class SearchForm extends Component<SearchFormProps, SearchFormState> {
         this.setState({ query: e.target.value });
     };
 
-    handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    handleSubmit = (e: SubmitEvent<HTMLFormElement>): void => {
         e.preventDefault();
 
         const trimmed = this.state.query.trim();
@@ -52,13 +50,12 @@ class SearchForm extends Component<SearchFormProps, SearchFormState> {
                     type="text"
                     value={query}
                     onChange={this.handleChange}
-                    placeholder="Search movies..."
+                    placeholder="Enter movie..."
                 />
-                <button type="submit">Search</button>
+                <Button type='submit' text="Search" />
             </form>
         );
     }
 }
 
-export default SearchForm;
 

@@ -1,9 +1,7 @@
-import Button from "../shared/ui/Button/Button"
+import { Home } from "../pages/Home/Home"
 
 function App() {
-  return (<>New Data Search App
-    <Button text="Click me" handleClick={() => console.log('Button clicked')} />
-  </>)
+  return <Home />
 }
 
 export default App

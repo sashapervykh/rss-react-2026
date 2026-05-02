@@ -3,7 +3,7 @@ import { Component, type MouseEventHandler } from 'react';
 type ButtonProps = {
   text: string;
   type?: 'button' | 'submit' | 'reset';
-  handleClick: MouseEventHandler<HTMLButtonElement>;
+  handleClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 class Button extends Component<ButtonProps> {
