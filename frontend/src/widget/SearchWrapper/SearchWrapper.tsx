@@ -31,12 +31,11 @@ export class SearchWrapper extends Component<Props, State> {
     }
     return (
       <>
-        <h1>Find Your Movie</h1>
+        <h1 className='text-2xl font-bold text-sky-800'>Find Your Movie</h1>
         <div>
           <SearchForm handleSearch={this.handleSearch} />
           <Button text="Break!" handleClick={() => { this.setState(p => ({ ...p, error: new Error("The app is crached due to click on testing button.") })) }} />
         </div>
-
         <MoviesList movies={this.state.movies} loading={this.state.loading} />
       </>
     );
