@@ -27,7 +27,7 @@ export async function getMoviesList(query: string) {
   } catch (err) {
     let message: string = 'Unknown server error happened. Try again later...';
     if (err instanceof Error) {
-      message = `Request to server failed. Server respose is [${err.message}]. Try again later...`;
+      message = `Request to server failed. Server response is [${err.message}]. Try again later...`;
     }
     throw new Error(message)
   }
