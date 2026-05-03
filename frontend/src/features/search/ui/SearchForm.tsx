@@ -45,12 +45,13 @@ export class SearchForm extends Component<SearchFormProps, SearchFormState> {
     const { query } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className='flex gap-[1rem]'>
         <input
           type="text"
           value={query}
           onChange={this.handleChange}
           placeholder="Enter movie..."
+          className='h-[100%] rounded-xl outline bg-zinc-50 p-[0.5rem]'
         />
         <Button type="submit" text="Search" />
       </form>
