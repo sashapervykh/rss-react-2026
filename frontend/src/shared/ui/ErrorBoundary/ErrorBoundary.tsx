@@ -11,13 +11,16 @@ type ErrorBoundaryState = {
   errorMessage: string | null;
 };
 
-export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   state: ErrorBoundaryState = {
     errorMessage: null,
   };
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return { errorMessage: error.message ?? FALLBACK_ERROR_MESSAGE }
+    return { errorMessage: error.message ?? FALLBACK_ERROR_MESSAGE };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -26,13 +29,17 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   render() {
     if (this.state.errorMessage) {
-      return <ErrorFallback message={this.state.errorMessage} reset={this.resetState} />
+      return (
+        <ErrorFallback
+          message={this.state.errorMessage}
+          reset={this.resetState}
+        />
+      );
     }
     return this.props.children;
   }
 
   resetState = () => {
     this.setState({ errorMessage: null });
-  }
+  };
 }
-

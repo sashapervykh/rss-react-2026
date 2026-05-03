@@ -1,1 +1,2 @@
-export const FALLBACK_ERROR_MESSAGE = 'Unknown error happened. Try again later.';
+export const FALLBACK_ERROR_MESSAGE =
+  'Unknown error happened. Try again later.';

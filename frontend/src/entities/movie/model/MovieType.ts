@@ -1,1 +1,5 @@
-export interface MovieType { id: number, title: string, description: string }
+export interface MovieType {
+  id: number;
+  title: string;
+  description: string;
+}

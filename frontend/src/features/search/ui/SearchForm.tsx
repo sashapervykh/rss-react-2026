@@ -3,59 +3,57 @@ import Button from '../../../shared/ui/Button/Button';
 import { STORAGE_KEY } from '../constants/storageKey';
 
 interface SearchFormProps {
-    handleSearch: (query: string) => void;
+  handleSearch: (query: string) => void;
 }
 
 interface SearchFormState {
-    query: string;
+  query: string;
 }
 
 export class SearchForm extends Component<SearchFormProps, SearchFormState> {
-    constructor(props: SearchFormProps) {
-        super(props);
-        const savedQuery = localStorage.getItem(STORAGE_KEY) ?? '';
-        this.state = {
-            query: savedQuery,
-        };
-    }
-
-    componentDidMount(): void {
-        const { query } = this.state;
-        this.props.handleSearch(query);
-    }
-
-    handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        this.setState({ query: e.target.value });
+  constructor(props: SearchFormProps) {
+    super(props);
+    const savedQuery = localStorage.getItem(STORAGE_KEY) ?? '';
+    this.state = {
+      query: savedQuery,
     };
+  }
 
-    handleSubmit = (e: SubmitEvent<HTMLFormElement>): void => {
-        e.preventDefault();
+  componentDidMount(): void {
+    const { query } = this.state;
+    this.props.handleSearch(query);
+  }
 
-        const trimmed = this.state.query.trim();
+  handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    this.setState({ query: e.target.value });
+  };
 
-        const saved = localStorage.getItem(STORAGE_KEY) ?? '';
-        if (trimmed === saved) return;
+  handleSubmit = (e: SubmitEvent<HTMLFormElement>): void => {
+    e.preventDefault();
 
-        localStorage.setItem(STORAGE_KEY, trimmed);
-        this.setState({ query: trimmed });
-        this.props.handleSearch(trimmed);
-    };
+    const trimmed = this.state.query.trim();
 
-    render() {
-        const { query } = this.state;
+    const saved = localStorage.getItem(STORAGE_KEY) ?? '';
+    if (trimmed === saved) return;
 
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <input
-                    type="text"
-                    value={query}
-                    onChange={this.handleChange}
-                    placeholder="Enter movie..."
-                />
-                <Button type='submit' text="Search" />
-            </form>
-        );
-    }
+    localStorage.setItem(STORAGE_KEY, trimmed);
+    this.setState({ query: trimmed });
+    this.props.handleSearch(trimmed);
+  };
+
+  render() {
+    const { query } = this.state;
+
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={query}
+          onChange={this.handleChange}
+          placeholder="Enter movie..."
+        />
+        <Button type="submit" text="Search" />
+      </form>
+    );
+  }
 }
-
-

@@ -1,1 +1,1 @@
-export const STORAGE_KEY = 'query'
+export const STORAGE_KEY = 'query';
