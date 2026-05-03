@@ -1,3 +1,4 @@
+import { Spinner } from '../../../../shared/ui/Spinner/Spinner';
 import type { MovieType } from '../../model/MovieType';
 import { MovieCard } from '../MovieCard/MovieCard';
 
@@ -8,7 +9,7 @@ interface Props {
 
 export function MoviesList({ movies, loading }: Props) {
   if (loading) {
-    return 'Loading movies...';
+    return <Spinner />;
   }
   if (movies.length === 0) {
     return 'No films matching your request were found...';
