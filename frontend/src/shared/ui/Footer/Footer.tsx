@@ -5,12 +5,12 @@ import { TMBD_NOTICE } from '../../constants/tmdbNotice';
 export class Footer extends Component {
   render() {
     return (
-      <footer>
-        <div style={{ width: '100px' }}>
+      <footer className='flex fixed bottom-0 bg-[#F5F5F0] w-[100%] p-[2rem 0] min-h-[50px] gap-[1rem] justify-center'>
+        <div className='flex w-[200px] m-[auto_0]'>
           <img src={tmdbLogo} alt="API Provider Logo" />
         </div>
-        <span>{TMBD_NOTICE}</span>
-      </footer>
+        <p className='flex text-sky-800 m-[auto_0] h-fit'>{TMBD_NOTICE}</p>
+      </footer >
     );
   }
 }
