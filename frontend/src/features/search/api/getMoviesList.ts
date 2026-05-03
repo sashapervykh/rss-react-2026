@@ -16,13 +16,11 @@ export async function getMoviesList(query: string) {
         Authorization: `Bearer ${API_TOKEN}`,
       },
     });
-    console.log(response)
     if (!response.ok) {
       const errorObject = await response.json();
       const errorMessage = getErrorMessage(errorObject)
       throw new Error(errorMessage);
     }
-
     const responseData: unknown = await response.json();
     const typedData = getTypedMovies(responseData);
     return typedData;
