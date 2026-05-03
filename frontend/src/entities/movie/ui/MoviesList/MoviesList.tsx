@@ -15,7 +15,7 @@ export function MoviesList({ movies, loading }: Props) {
   }
 
   return (
-    <div>
+    <div className='border-t-3 pt-[1rem] pb-[1.5rem] h-full min-h-0 overflow-y-auto'>
       {movies.map((movie) => (
         <MovieCard key={movie.id} {...movie} />
       ))}

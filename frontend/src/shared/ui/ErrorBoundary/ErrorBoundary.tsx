@@ -16,7 +16,7 @@ export class ErrorBoundary extends Component<
   ErrorBoundaryState
 > {
   state: ErrorBoundaryState = {
-    errorMessage: 'trkdfklvmldkfvmldkfvklmdflvkmlkm fvlmdflkvmdlfkvm flvkmdfkvmldue',
+    errorMessage: null,
   };
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {

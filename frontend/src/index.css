@@ -6,11 +6,12 @@
   margin: 0 auto;
   text-align: center;
   border-inline: 1px solid var(--border);
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 1rem
+  overflow: hidden;
+  padding: 1rem;
 }
 
 body {

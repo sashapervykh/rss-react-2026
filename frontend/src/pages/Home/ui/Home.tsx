@@ -17,7 +17,7 @@ export class Home extends Component<object, State> {
     return (
       <>
         <Header />
-        <main className='flex flex-col text-sky-900 grow'>
+        <main className='flex flex-col text-sky-900 grow min-h-0'>
           <ErrorBoundary>
             <SearchWrapper
               testingError={this.state.error}
