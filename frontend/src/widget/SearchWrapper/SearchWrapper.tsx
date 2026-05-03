@@ -3,6 +3,7 @@ import type { MovieType } from '../../entities/movie/model/MovieType';
 import { SearchForm } from '../../features/search/ui/SearchForm';
 import { MoviesList } from '../../entities/movie/ui/MoviesList/MoviesList';
 import { getMoviesList } from '../../features/search/api/getMoviesList';
+import Button from '../../shared/ui/Button/Button';
 
 interface State {
   movies: MovieType[];
@@ -31,7 +32,11 @@ export class SearchWrapper extends Component<Props, State> {
     return (
       <>
         <h1>Find Your Movie</h1>
-        <SearchForm handleSearch={this.handleSearch} />
+        <div>
+          <SearchForm handleSearch={this.handleSearch} />
+          <Button text="Break!" handleClick={() => { this.setState(p => ({ ...p, error: new Error("The app is crached due to click on testing button.") })) }} />
+        </div>
+
         <MoviesList movies={this.state.movies} loading={this.state.loading} />
       </>
     );
