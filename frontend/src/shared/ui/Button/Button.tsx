@@ -11,7 +11,11 @@ class Button extends Component<ButtonProps> {
     const { text, handleClick, type = 'button' } = this.props;
 
     return (
-      <button type={type} onClick={handleClick} className='p-[0.6rem] text-sky-800 cursor-pointer bg-slate-100 rounded-xl border-sky-950 border-1 w-fit m-[auto]'>
+      <button
+        type={type}
+        onClick={handleClick}
+        className="p-[0.6rem] text-sky-800 cursor-pointer bg-slate-100 rounded-xl border-sky-950 border-1 w-fit m-[auto]"
+      >
         {text}
       </button>
     );

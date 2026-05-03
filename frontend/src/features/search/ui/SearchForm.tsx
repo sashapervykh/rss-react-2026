@@ -30,12 +30,9 @@ export class SearchForm extends Component<SearchFormProps, SearchFormState> {
 
   handleSubmit = (e: SubmitEvent<HTMLFormElement>): void => {
     e.preventDefault();
-
     const trimmed = this.state.query.trim();
-
     const saved = localStorage.getItem(STORAGE_KEY) ?? '';
     if (trimmed === saved) return;
-
     localStorage.setItem(STORAGE_KEY, trimmed);
     this.setState({ query: trimmed });
     this.props.handleSearch(trimmed);
