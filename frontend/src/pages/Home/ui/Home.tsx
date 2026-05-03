@@ -17,12 +17,14 @@ export class Home extends Component<object, State> {
     return (
       <>
         <Header />
-        <ErrorBoundary>
-          <SearchWrapper
-            testingError={this.state.error}
-            resetError={this.resetError}
-          />
-        </ErrorBoundary>
+        <main className='flex flex-col text-sky-900'>
+          <ErrorBoundary>
+            <SearchWrapper
+              testingError={this.state.error}
+              resetError={this.resetError}
+            />
+          </ErrorBoundary>
+        </main>
         <Footer />
       </>
     );
