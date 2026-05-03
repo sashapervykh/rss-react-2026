@@ -10,14 +10,22 @@ interface State {
     error: null | Error;
 }
 
+interface Props {
+    testingError: boolean;
+    resetError: () => void;
 
-export class SearchWrapper extends Component<object, State> {
-    constructor(props: object) {
+}
+
+export class SearchWrapper extends Component<Props, State> {
+    constructor(props: Props) {
         super(props)
         this.state = { movies: [], loading: true, error: null }
     }
 
     render() {
+        if (this.props.testingError) {
+            throw new Error('You have thrown testing error.')
+        }
         if (this.state.error) {
             throw this.state.error
         }
