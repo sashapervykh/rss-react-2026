@@ -32,14 +32,9 @@ export class ErrorBoundary extends Component<
       return (
         <ErrorFallback
           message={this.state.errorMessage}
-          reset={this.resetState}
         />
       );
     }
     return this.props.children;
   }
-
-  resetState = () => {
-    this.setState({ errorMessage: null });
-  };
 }

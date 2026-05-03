@@ -2,7 +2,6 @@ import { Component } from 'react';
 
 interface Props {
   message: string;
-  reset: () => void;
 }
 
 export class ErrorFallback extends Component<Props> {
