@@ -32,7 +32,7 @@ export class SearchWrapper extends Component<Props, State> {
     return (
       <>
         <h1 className='text-2xl font-bold text-sky-800 mb-[1rem]'>Find Your Movie</h1>
-        <div className='flex gap-[1rem] m-[0_auto_1rem_auto]'>
+        <div className='flex gap-[1rem] m-[0_auto_1rem_auto] border-black'>
           <SearchForm handleSearch={this.handleSearch} />
           <Button text="Break!" handleClick={() => { this.setState(p => ({ ...p, error: new Error("The app is crached due to click on testing button.") })) }} />
         </div>
