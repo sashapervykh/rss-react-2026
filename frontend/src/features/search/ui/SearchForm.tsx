@@ -3,6 +3,7 @@ import Button from '../../../shared/ui/Button/Button';
 import { STORAGE_KEY } from '../constants/storageKey';
 
 interface SearchFormProps {
+  errorMessage: string | null;
   handleSearch: (query: string) => void;
 }
 
@@ -32,7 +33,7 @@ export class SearchForm extends Component<SearchFormProps, SearchFormState> {
     e.preventDefault();
     const trimmed = this.state.query.trim();
     const saved = localStorage.getItem(STORAGE_KEY) ?? '';
-    if (trimmed === saved) return;
+    if (trimmed === saved && !this.props.errorMessage) return;
     localStorage.setItem(STORAGE_KEY, trimmed);
     this.setState({ query: trimmed });
     this.props.handleSearch(trimmed);
