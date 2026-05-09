@@ -23,3 +23,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Coverage reports
+coverage/
+__coverage__/
+
+# Vitest
+.vitest/
