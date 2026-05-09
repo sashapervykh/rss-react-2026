@@ -20,7 +20,7 @@ export class ErrorBoundary extends Component<
   };
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return { errorMessage: error.message ?? FALLBACK_ERROR_MESSAGE };
+    return { errorMessage: error.message || FALLBACK_ERROR_MESSAGE };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
