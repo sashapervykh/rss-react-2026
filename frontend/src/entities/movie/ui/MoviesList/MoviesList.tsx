@@ -11,9 +11,9 @@ interface Props {
 
 export class MoviesList extends Component<Props> {
   render() {
-    const { loading, movies, errorMessage } = this.props
+    const { loading, movies, errorMessage } = this.props;
     if (errorMessage) {
-      throw new Error(errorMessage)
+      throw new Error(errorMessage);
     }
     if (loading) {
       return <Spinner />;
@@ -29,5 +29,4 @@ export class MoviesList extends Component<Props> {
       </div>
     );
   }
-
 }

@@ -22,9 +22,13 @@ describe('getMoviesList (MSW)', () => {
     expect(result).toEqual([]);
   });
   it('returns correct message for server error', async () => {
-    expect(getMoviesList(TEST_REQUESTS.SERVER_ERROR)).rejects.toThrow(`Request to server failed. Server response is [Server Error]. Try again later...`);
+    expect(getMoviesList(TEST_REQUESTS.SERVER_ERROR)).rejects.toThrow(
+      `Request to server failed. Server response is [Server Error]. Try again later...`
+    );
   });
   it('returns fallback message for unknown server error', async () => {
-    expect(getMoviesList(TEST_REQUESTS.UNKNOWN_ERROR)).rejects.toThrow(`Request to server failed. Server response is [Unknown server error]. Try again later...`);
+    expect(getMoviesList(TEST_REQUESTS.UNKNOWN_ERROR)).rejects.toThrow(
+      `Request to server failed. Server response is [Unknown server error]. Try again later...`
+    );
   });
 });

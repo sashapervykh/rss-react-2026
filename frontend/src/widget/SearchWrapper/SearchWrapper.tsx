@@ -13,11 +13,15 @@ interface State {
   renderKey: number;
 }
 
-
 export class SearchWrapper extends Component<object, State> {
   constructor(props: object) {
     super(props);
-    this.state = { movies: [], loading: true, errorMessage: null, renderKey: 0 };
+    this.state = {
+      movies: [],
+      loading: true,
+      errorMessage: null,
+      renderKey: 0,
+    };
   }
 
   render() {
@@ -27,19 +31,27 @@ export class SearchWrapper extends Component<object, State> {
           Find Your Movie
         </h1>
         <div className="flex gap-[1rem] m-[0_auto_1rem_auto] border-black">
-          <SearchForm handleSearch={this.handleSearch} errorMessage={this.state.errorMessage} />
+          <SearchForm
+            handleSearch={this.handleSearch}
+            errorMessage={this.state.errorMessage}
+          />
           <Button
             text="Break!"
             handleClick={() => {
               this.setState((p) => ({
                 ...p,
-                errorMessage: 'The app is crashed due to click on testing button.'
+                errorMessage:
+                  'The app is crashed due to click on testing button.',
               }));
             }}
           />
         </div>
         <ErrorBoundary key={this.state.renderKey}>
-          <MoviesList movies={this.state.movies} loading={this.state.loading} errorMessage={this.state.errorMessage} />
+          <MoviesList
+            movies={this.state.movies}
+            loading={this.state.loading}
+            errorMessage={this.state.errorMessage}
+          />
         </ErrorBoundary>
       </div>
     );

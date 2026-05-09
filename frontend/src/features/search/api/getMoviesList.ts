@@ -18,7 +18,7 @@ export async function getMoviesList(query: string) {
     });
     if (!response.ok) {
       const errorObject = await response.json();
-      const errorMessage = getErrorMessage(errorObject)
+      const errorMessage = getErrorMessage(errorObject);
       throw new Error(errorMessage);
     }
     const responseData: unknown = await response.json();
@@ -29,6 +29,6 @@ export async function getMoviesList(query: string) {
     if (err instanceof Error) {
       message = `Request to server failed. Server response is [${err.message}]. Try again later...`;
     }
-    throw new Error(message)
+    throw new Error(message);
   }
 }

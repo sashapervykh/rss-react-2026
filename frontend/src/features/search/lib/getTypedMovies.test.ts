@@ -29,17 +29,15 @@ describe('getTypedMovies', () => {
   });
 
   it('throws when results is not an array', () => {
-    expect(() =>
-      getTypedMovies({ results: 'not-array' })
-    ).toThrow(
+    expect(() => getTypedMovies({ results: 'not-array' })).toThrow(
       'Results should be in response and should be an array!'
     );
   });
 
   it('throws when movie is not an object', () => {
-    expect(() =>
-      getTypedMovies({ results: [null] })
-    ).toThrow('Each movie should be an object!');
+    expect(() => getTypedMovies({ results: [null] })).toThrow(
+      'Each movie should be an object!'
+    );
   });
 
   it('throws when movie has no id', () => {

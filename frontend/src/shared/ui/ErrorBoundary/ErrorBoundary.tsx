@@ -29,11 +29,7 @@ export class ErrorBoundary extends Component<
 
   render() {
     if (this.state.errorMessage) {
-      return (
-        <ErrorFallback
-          message={this.state.errorMessage}
-        />
-      );
+      return <ErrorFallback message={this.state.errorMessage} />;
     }
     return this.props.children;
   }

@@ -4,44 +4,44 @@ import { describe, expect, test, vi } from 'vitest';
 import Button from './Button';
 
 describe('Button', () => {
-    test('renders button with correct text', () => {
-        render(<Button text="Click me" />);
+  test('renders button with correct text', () => {
+    render(<Button text="Click me" />);
 
-        const button = screen.getByRole('button', {
-            name: "Click me",
-        });
-
-        expect(button).toBeInTheDocument();
+    const button = screen.getByRole('button', {
+      name: 'Click me',
     });
 
-    test('calls handleClick when clicked', async () => {
-        const user = userEvent.setup();
-        const handleClick = vi.fn();
+    expect(button).toBeInTheDocument();
+  });
 
-        render(<Button text="Click me" handleClick={handleClick} />);
+  test('calls handleClick when clicked', async () => {
+    const user = userEvent.setup();
+    const handleClick = vi.fn();
 
-        const button = screen.getByRole('button', {
-            name: /click me/i,
-        });
+    render(<Button text="Click me" handleClick={handleClick} />);
 
-        await user.click(button);
-
-        expect(handleClick).toHaveBeenCalledTimes(1);
+    const button = screen.getByRole('button', {
+      name: /click me/i,
     });
 
-    test('has correct default type attribute', () => {
-        render(<Button text="Click me" />);
+    await user.click(button);
 
-        const button = screen.getByRole('button');
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
 
-        expect(button).toHaveAttribute('type', 'button');
-    });
+  test('has correct default type attribute', () => {
+    render(<Button text="Click me" />);
 
-    test('applies custom type when provided', () => {
-        render(<Button text="Submit" type="submit" />);
+    const button = screen.getByRole('button');
 
-        const button = screen.getByRole('button');
+    expect(button).toHaveAttribute('type', 'button');
+  });
 
-        expect(button).toHaveAttribute('type', 'submit');
-    });
+  test('applies custom type when provided', () => {
+    render(<Button text="Submit" type="submit" />);
+
+    const button = screen.getByRole('button');
+
+    expect(button).toHaveAttribute('type', 'submit');
+  });
 });
