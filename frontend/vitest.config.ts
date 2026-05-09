@@ -8,10 +8,14 @@ export default defineConfig({
                 resources: 'usable',
             },
         },
-        globals: true,
+        globals: false,
         coverage: {
             provider: 'v8',
-            reporter: ['text', 'json', 'html'],
+            reporter: [['text', {
+                maxCols: 200,
+                skipEmpty: false,
+                skipFull: false
+            }], 'json', 'html'],
             include: ['src/**/*.{ts,tsx}'],
             exclude: [
                 'src/**/*.test.{ts,tsx}',
@@ -31,7 +35,7 @@ export default defineConfig({
                 },
             },
         },
-        setupFiles: ['./src/test/setup.ts'],
+        setupFiles: ['./src/__tests__/setupTests.ts'],
         css: true,
         clearMocks: true,
         mockReset: true,
