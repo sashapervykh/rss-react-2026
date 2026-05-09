@@ -9,6 +9,10 @@
     "lint": "eslint .",
     "format": "prettier . --write",
     "preview": "vite preview",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest --watch",
     "prepare": "cd .. && husky frontend/.husky"
   },
   "dependencies": {
